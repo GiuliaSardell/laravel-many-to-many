@@ -132,11 +132,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // $data = $request ->all();
-        // $post->update($data);
+ 
 
-        // return redirect()->route('admin.post.index', $post);
-
+        
         $request->validate(
             [
                 'title'=> 'required|max:255|min:2',
@@ -158,6 +156,15 @@ class PostController extends Controller
         $data['slug'] = Post::generateSlug($data['title']);
 
         $post->update($data);
+
+
+
+        if(array_key_exists('tags', $data)){
+            $post->tags()->sync($data['tags']);
+        } else{
+            $post->tags()->detach();
+        }
+
 
 
 

@@ -16,6 +16,8 @@
               <th scope="col">TITOLO</th>
               <th scope="col">TESTO</th>
               <th scope="col">CATEGORIA</th>
+              <th scope="col">TAG</th>
+              <th scope="col">MOSTRA</th>
               <th scope="col">MODIFICA</th>
               <th scope="col">ELIMINA</th>
             </tr>
@@ -32,6 +34,13 @@
                   @else 
                   ---
                   @endif
+                </td>
+                <td>
+                  @forelse($post->tags as $tag)
+                    <span class="badge bg-primary">{{$tag->name}}</span>
+                  @empty
+                    ---
+                  @endforelse
                 </td>
                 <td>
                   <button type="button" class="btn btn-warning">

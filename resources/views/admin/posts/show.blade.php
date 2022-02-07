@@ -4,7 +4,13 @@
 
   <div class="container">
     <h1>Titolo: {{$posts->title}}</h1>
-    
+
+    @forelse($posts->tags as $tag)
+      <span class="badge bg-primary">{{$tag->name}}</span>
+    @empty
+      
+    @endforelse
+    <br>
     <a href="{{route('admin.post.index')}}" type="button" class="btn btn-warning my-2">Indietro</a>
 
 
